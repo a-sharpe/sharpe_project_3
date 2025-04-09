@@ -1,6 +1,6 @@
 Names: Alexander Sharpe and Cristobal Benavides
 
-# Part 1: LubyMIS on Local Machine 
+# Part 1: verifyMIS on Local Machine 
 
 |        Graph file       |           MIS file           | Is an MIS? |
 | ----------------------- | ---------------------------- | ---------- |
@@ -11,7 +11,7 @@ Names: Alexander Sharpe and Cristobal Benavides
 | twitter_10000_edges.csv | twitter_10000_MIS_test_1.csv |           |
 | twitter_10000_edges.csv | twitter_10000_MIS_test_2.csv |           |
 
-# Part 2:
+# Part 2: LubyMIS on Local Machine 
 
 |        Graph file       | Iterations | Running Time | MIS? |
 | ----------------------- | ---------- | ------------ | ---- |
@@ -21,8 +21,11 @@ Names: Alexander Sharpe and Cristobal Benavides
 | twitter_1000_edges.csv  |            |              |      |
 | twitter_10000_edges.csv |            |              |      |
 
-# Part 3: LubyMIS on twitter_original_edges.csv in GCP with 3x4 cores
+# Part 3: LubyMIS on twitter_original_edges.csv in GCP 
 
-|        Graph file          | Iterations | Running Time | Remaining Active Vertices | MIS? |
-| -------------------------- | ---------- | ------------ | ------------------------- | ---- |
-| twitter_original_edges.csv |            |              |                           |      |
+| Cores | Iterations | Running Time | Remaining Active Vertices | MIS? |
+| ----- | ---------- | ------------ | ------------------------- | ---- |
+| 3x4   |            |              |                           |      |
+| 4x2   |            |              |                           |      |
+| 2x2   |            |              |                           |      |
+
