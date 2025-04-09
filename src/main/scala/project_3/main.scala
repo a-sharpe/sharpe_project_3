@@ -24,7 +24,49 @@ object main{
 
 
   def verifyMIS(g_in: Graph[Int, Int]): Boolean = {
-    // To Implement
+    var ans: Boolean = false
+
+    //first check if vertices are adjacent
+    //.triplets allows us to combine all the info about vertices and their respective edges
+    //then just filter all the triplets that have 1 at the source and destination, these are invalid in MIS
+
+    val invalidCount = g_in.triplets
+      .filter(triplet => triplet.srcAttr == 1 && triplet.dstAttr == 1)
+      .count()
+
+    if (invalidCount > 0) {
+      return ans
+    }
+
+    //next check for maximality
+    //we can do this by checking that for each 0 vertex, it has at least one 1 vertex neighbor
+    //each 1 vertex sends true to neighbors with Agg.Messages
+    //we combine messages using OR to find (0,1) vertex pairs
+
+    val hasInMisNeighbor = g_in.aggregateMessages[Boolean](
+    sendMsg = ctx => {
+      if (ctx.srcAttr == 1) ctx.sendToDst(true)
+      if (ctx.dstAttr == 1) ctx.sendToSrc(true)
+    },
+    mergeMsg = (m1, m2) => m1 || m2,
+    tripletFields = TripletFields.All)
+
+    //now compare to original graph: if any 0 vertex has no neighbor in MIS, thenthe graph is not maximal
+
+    val nonMaximalCount = g_in.vertices
+      .join(hasInMisNeighbor)            // (vertexId, (attr, neighborHasOne))
+      .filter { case (_, (attr, hasNeighborInMIS)) => attr == 0 && !hasNeighborInMIS
+      }
+      .count()
+
+    if (nonMaximalCount > 0) {
+      return ans
+    }
+    else {
+      ans = true
+    }
+
+    return ans
   }
 
 
@@ -69,10 +111,12 @@ object main{
       val g = Graph[Int, Int](vertices, edges, edgeStorageLevel = StorageLevel.MEMORY_AND_DISK, vertexStorageLevel = StorageLevel.MEMORY_AND_DISK)
 
       val ans = verifyMIS(g)
-      if(ans)
-        println("Yes")
-      else
-        println("No")
+      if(ans) {
+        println("******YES IS A MIS*****")
+      }
+      else {
+        println("******NOT A MIS******")
+      }
     }
     else
     {
