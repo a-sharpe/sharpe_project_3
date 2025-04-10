@@ -16,9 +16,6 @@ object main{
   Logger.getLogger("org.apache.spark").setLevel(Level.WARN)
   Logger.getLogger("org.spark-project").setLevel(Level.WARN)
 
-  def LubyMIS(g_in: Graph[Int, Int]): Graph[Int, Int] = {
-    while (remaining_vertices >= 1) {
-        // To Implement
   def LubyMIS(graph: Graph[Int, Int]): Graph[Int, Int] = {
     var g = graph.mapVertices((id, _) => 0) // 0 = undecided, 1 = in MIS, -1 = removed
     var keepGoing = true
@@ -81,13 +78,13 @@ object main{
 
       // Continue if any vertices are still 0 (undecided)
       val remaining = g.vertices.filter { case (id, attr) => attr == 0 }.count()
-      println(s"Iteration $iter: remaining vertices = $remaining")
+      println(s"Iteration $iter completed. Remaining undecided vertices: $remaining")
       keepGoing = remaining > 0
     }
 
     val totalTime = (System.currentTimeMillis() - startTime) / 1000.0
     val misSize = g.vertices.filter { case (_, attr) => attr == 1 }.count()
-//print statments added her and removed from the main
+
     println("==================================")
     println(f"Luby's algorithm completed in $totalTime%.2f seconds.")
     println(s"Iterations: $iter")
@@ -96,7 +93,6 @@ object main{
 
     g
   }
-}
 
   def verifyMIS(g_in: Graph[Int, Int]): Boolean = {
     var ans: Boolean = false
@@ -200,3 +196,4 @@ object main{
     }
   }
 }
+
