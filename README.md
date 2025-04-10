@@ -25,7 +25,7 @@ Names: Alexander Sharpe and Cristobal Benavides
 
 | Cores | Iterations | Running Time | Remaining Active Vertices | MIS? |
 | ----- | ---------- | ------------ | ------------------------- | ---- |
-| 3x4   |            |              |                           |      |
-| 4x2   |            |              |                           |      |
-| 2x2   |            |              |                           |      |
+| 3x4   |            |              |  |      |
+| 4x2   |            |              |    |      |
+| 2x2   |     7       |       1213.07       |6993185, 41682, 5706, 109, 9, 1, 0   |      |
 
