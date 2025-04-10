@@ -16,11 +16,70 @@ object main{
   Logger.getLogger("org.apache.spark").setLevel(Level.WARN)
   Logger.getLogger("org.spark-project").setLevel(Level.WARN)
 
-  def LubyMIS(g_in: Graph[Int, Int]): Graph[Int, Int] = {
-    while (remaining_vertices >= 1) {
-        // To Implement
+def LubyMIS(graph: Graph[Int, Int]): Graph[Int, Int] = {
+  var g = graph.mapVertices((id, _) => 0) // 0 = undecided, 1 = in MIS, -1 = removed
+  var keepGoing = true
+
+  while (keepGoing) {
+    // Assign random number to all undecided vertices (attr == 0)
+    val randGraph = g.mapVertices {
+      case (id, attr) => if (attr == 0) scala.util.Random.nextDouble() else -1.0
     }
+
+    // Send random values to neighbors
+    val neighborMax = randGraph.aggregateMessages[Double](
+      sendMsg = triplet => {
+        if (triplet.srcAttr != -1.0 && triplet.dstAttr != -1.0) {
+          triplet.sendToDst(triplet.srcAttr)
+          triplet.sendToSrc(triplet.dstAttr)
+        }
+      },
+      mergeMsg = (a, b) => math.max(a, b)
+    )
+
+    // Join and determine if each vertex is a local maxima
+    val joined = randGraph.vertices.join(neighborMax)
+    val candidateMIS = joined
+      .filter { case (vid, (myRand, nbrRand)) => myRand >= nbrRand && myRand != -1.0 }
+      .mapValues(_ => 1)
+
+    // Vertices with no neighbors also go into MIS
+    val allWithRand = randGraph.vertices
+    val candidateWithoutNeighbors = allWithRand
+      .subtractByKey(joined)
+      .filter { case (vid, rand) => rand != -1.0 }
+      .mapValues(_ => 1)
+
+    val newMIS = candidateMIS.union(candidateWithoutNeighbors)
+
+    // Update graph: mark MIS vertices as 1
+    val withMIS = g.joinVertices(newMIS) {
+      case (vid, oldAttr, newVal) => 1
+    }
+
+    // Mark neighbors of new MIS nodes as -1 (removed)
+    val neighborsToRemove = withMIS.aggregateMessages[Int](
+      sendMsg = triplet => {
+        if (triplet.srcAttr == 1 && triplet.dstAttr == 0) triplet.sendToDst(-1)
+        if (triplet.dstAttr == 1 && triplet.srcAttr == 0) triplet.sendToSrc(-1)
+      },
+      mergeMsg = (a, b) => -1
+    )
+
+    // Apply neighbor removals
+    val updated = withMIS.joinVertices(neighborsToRemove) {
+      case (vid, oldAttr, msg) => if (oldAttr == 0) msg else oldAttr
+    }
+
+    g = updated
+
+    // Continue if any vertices are still 0 (undecided)
+    val remaining = g.vertices.filter { case (id, attr) => attr == 0 }.count()
+    keepGoing = remaining > 0
   }
+
+  g
+}
 
 
   def verifyMIS(g_in: Graph[Int, Int]): Boolean = {
