@@ -15,11 +15,11 @@ Names: Alexander Sharpe and Cristobal Benavides
 
 |        Graph file       | Iterations | Running Time | MIS? |
 | ----------------------- | ---------- | ------------ | ---- |
-| small_edges.csv         |            |              |      |
-| line_100_edges.csv      |            |              |      |
-| twitter_100_edges.csv   |            |              |      |
-| twitter_1000_edges.csv  |            |              |      |
-| twitter_10000_edges.csv |            |              |      |
+| small_edges.csv         |     1       |    0.73          |  2    |
+| line_100_edges.csv      |    0.86       |       3       |  41    |
+| twitter_100_edges.csv   |     0.72       |       2       |   96   |
+| twitter_1000_edges.csv  |      0.93      |       3       |    951  |
+| twitter_10000_edges.csv |      1.58      |       3      |   9658   |
 
 # Part 3: LubyMIS on twitter_original_edges.csv in GCP 
 
