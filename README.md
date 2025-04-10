@@ -13,13 +13,13 @@ Names: Alexander Sharpe and Cristobal Benavides
 
 # Part 2: LubyMIS on Local Machine 
 
-|        Graph file       | Iterations | Running Time | size MIS |MIS?|
-| ----------------------- | ---------- | ------------ | ---- |----|---|
-| small_edges.csv         |     1       |    0.73          |  2    |yes|
-| line_100_edges.csv      |    0.86       |       3       |  41    |yes|
-| twitter_100_edges.csv   |     0.72       |       2       |   96   |yes|
-| twitter_1000_edges.csv  |      0.93      |       3       |    951  |yes|
-| twitter_10000_edges.csv |      1.58      |       3      |   9658   |yes|
+|        Graph file       | Iterations | Running Time | size MIS | MIS? |
+| ----------------------- | ---------- | ------------ | ---- |----| --- |
+| small_edges.csv         |     1       |    0.73          |  2    | yes |
+| line_100_edges.csv      |    0.86       |       3       |  41    | yes |
+| twitter_100_edges.csv   |     0.72       |       2       |   96   | yes |
+| twitter_1000_edges.csv  |      0.93      |       3       |    951  | yes |
+| twitter_10000_edges.csv |      1.58      |       3      |   9658   | yes |
 
 # Part 3: LubyMIS on twitter_original_edges.csv in GCP 
 
