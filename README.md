@@ -23,7 +23,7 @@ Names: Alexander Sharpe and Cristobal Benavides
 
 # Part 3: LubyMIS on twitter_original_edges.csv in GCP 
 
-| Cores | Iterations | Running Time | Remaining Active Vertices | MIS? |
+| Cores | Iterations | Running Time (s) | Remaining Active Vertices (After Each Iteration) | MIS? |
 | ----- | ---------- | ------------ | ------------------------- | ---- |
 | 3x4   |            |              |  |      |
 | 4x2   |            |              |    |      |
