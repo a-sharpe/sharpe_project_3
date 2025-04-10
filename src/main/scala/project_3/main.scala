@@ -112,10 +112,10 @@ object main{
 
       val ans = verifyMIS(g)
       if(ans) {
-        println("******YES IS A MIS*****")
+        println("****** YES IS A MIS *****")
       }
       else {
-        println("******NOT A MIS******")
+        println("****** NOT A MIS ******")
       }
     }
     else
