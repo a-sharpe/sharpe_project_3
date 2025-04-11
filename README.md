@@ -23,7 +23,7 @@ Names: Alexander Sharpe and Cristobal Benavides
 
 # Part 3: LubyMIS on twitter_original_edges.csv in GCP 
 
-For the 3x4 and 2x2 configurations we used 100 GB disk space and Balanced Persistent Disk type. For the 4x2 configuration we had to use the Standard Disk type due to repeated quota errors. 
+For the 3x4 and 2x2 configurations we used 100 GB disk space and Balanced Persistent Disk type. For the 4x2 configuration we had to use the Standard Disk type due to repeated quota errors. As expected, the 2x2 configuration took the longest due to it having the least workers and least CPUs. The configuration with the most CPUs, 3x4, performed the fastest, which makes sense because it only had one less worker than the 4x2 but double the computing power.
 
 | Cores | Iterations | Running Time (s) | Remaining Active Vertices (After Each Iteration) | MIS? |
 | ----- | ---------- | ------------ | ------------------------- | ---- |
