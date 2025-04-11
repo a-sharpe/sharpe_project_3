@@ -28,6 +28,6 @@ For the 3x4 and 2x2 configurations we used 100 GB disk space and Balanced Persis
 | Cores | Iterations | Running Time (s) | Remaining Active Vertices (After Each Iteration) | MIS? |
 | ----- | ---------- | ------------ | ------------------------- | ---- |
 | 3x4   |     5       | 166.92 | 6666259, 33378, 492, 1, 0 |   Yes   |
-| 4x2   |     5       |              | 6865939, 39499, 518, 3, 0   |   Yes   |
+| 4x2   |     5       |     688.20         | 6865939, 39499, 518, 3, 0   |   Yes   |
 | 2x2   |     7       |       1213.07       | 6993185, 41682, 5706, 109, 9, 1, 0   |    Yes  |
 
