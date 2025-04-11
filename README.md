@@ -23,9 +23,11 @@ Names: Alexander Sharpe and Cristobal Benavides
 
 # Part 3: LubyMIS on twitter_original_edges.csv in GCP 
 
+For the 3x4 and 2x2 configurations we used 100 GB disk space and Balanced Persistent Disk type. For the 4x2 configuration we had to use the Standard Disk type due to repeated quota errors. 
+
 | Cores | Iterations | Running Time (s) | Remaining Active Vertices (After Each Iteration) | MIS? |
 | ----- | ---------- | ------------ | ------------------------- | ---- |
-| 3x4   |            |              |  |      |
-| 4x2   |            |              |    |      |
-| 2x2   |     7       |       1213.07       |6993185, 41682, 5706, 109, 9, 1, 0   |      |
+| 3x4   |     5       | 166.92 | 6666259, 33378, 492, 1, 0 |   Yes   |
+| 4x2   |     5       |              | 6865939, 39499, 518, 3, 0   |   Yes   |
+| 2x2   |     7       |       1213.07       | 6993185, 41682, 5706, 109, 9, 1, 0   |    Yes  |
 
