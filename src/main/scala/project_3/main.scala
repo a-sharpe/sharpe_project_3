@@ -24,7 +24,7 @@ object main{
 
     while (keepGoing) {
       iter += 1
-      // Assign random number to all undecided vertices (attr == 0)
+      // Assign random number to all undecided vertices  where (attr == 0)
       val randGraph = g.mapVertices {
         case (id, attr) => if (attr == 0) scala.util.Random.nextDouble() else -1.0
       }
@@ -85,6 +85,7 @@ object main{
     val totalTime = (System.currentTimeMillis() - startTime) / 1000.0
     val misSize = g.vertices.filter { case (_, attr) => attr == 1 }.count()
 
+    /// Print statments moved here instead of main 
     println("==================================")
     println(f"Luby's algorithm completed in $totalTime%.2f seconds.")
     println(s"Iterations: $iter")
